@@ -12,13 +12,18 @@ let errors = document.querySelectorAll(".error");
 let headerDay = document.querySelector(".header-day");
 let headerMonth = document.querySelector(".header-month");
 let headerYear = document.querySelector(".header-year");
+const currentYear = new Date().getFullYear();
 
 button.addEventListener("click", () => {
   const day = parseInt(daysInput.value);
   const month = parseInt(monthInput.value) - 1; // JavaScript months are 0-based
   const year = parseInt(yearInput.value);
 
-  if (daysInput.value > 31 && monthInput.value > 12 && yearInput.value > 2023) {
+  if (
+    daysInput.value > 31 &&
+    monthInput.value > 12 &&
+    yearInput.value > currentYear
+  ) {
     errorDay.innerText = "Most be a valid day";
     errorMonth.innerText = "Most be a valid month";
     errorYear.innerText = "Most be in the past";
@@ -61,7 +66,7 @@ button.addEventListener("click", () => {
     daysInput.value = "";
     monthInput.value = "";
     yearInput.value = "";
-  } else if (yearInput.value > 2023) {
+  } else if (yearInput.value > currentYear) {
     errorYear.innerText = "Most be a valid year";
     errorYear.style.display = "block";
     headerDay.style.color = "red";
